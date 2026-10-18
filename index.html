@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중1 사회: 공법과 사법 & 공적·사적 생활 관계 Master Quiz</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-indigo-600 font-extrabold px-2.5 py-1 rounded-lg text-sm shadow">
+                    중1 사회
+                </div>
+                <h1 class="font-bold text-lg md:text-xl tracking-tight">공법과 사법 & 생활 관계 퀴즈</h1>
+            </div>
+            <div class="flex items-center space-x-2 text-xs md:text-sm font-medium bg-indigo-700/60 px-3 py-1.5 rounded-full border border-indigo-500/30">
+                <span>진도: 2. 생활 속의 다양한 법</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow">
+
+        <!-- START SCREEN -->
+        <div id="start-screen" class="bg-white rounded-2xl p-6 md:p-10 shadow-xl border border-slate-100 text-center space-y-6">
+            <div class="inline-block p-4 bg-indigo-50 rounded-full text-indigo-600 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+                개념 완벽 마스터 25문항 퀴즈
+            </h2>
+            <p class="text-slate-600 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
+                중1 사회 교과서 <strong class="text-indigo-600">공법과 사법, 공적·사적 생활 관계, 헌법·민법·형법·상법</strong>의 핵심 개념을 총 25개의 문제(4지선다, 2지선다, O/X, 단답형)로 학습해 봅시다.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto pt-2 text-left">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span class="text-xs text-slate-500 font-semibold block mb-1">4지선다형</span>
+                    <span class="text-lg font-bold text-slate-800">12문항</span>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span class="text-xs text-slate-500 font-semibold block mb-1">2지선다형</span>
+                    <span class="text-lg font-bold text-slate-800">4문항</span>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span class="text-xs text-slate-500 font-semibold block mb-1">O/X 판단형</span>
+                    <span class="text-lg font-bold text-slate-800">5문항</span>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span class="text-xs text-slate-500 font-semibold block mb-1">단답형</span>
+                    <span class="text-lg font-bold text-slate-800">4문항</span>
+                </div>
+            </div>
+
+            <!-- Mode Options -->
+            <div class="pt-4 max-w-md mx-auto space-y-3">
+                <button id="btn-start" onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 text-lg flex items-center justify-center space-x-2">
+                    <span>퀴즈 풀기 시작</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden space-y-4">
+            <!-- Progress Bar & Indicator -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-3">
+                <div class="flex items-center space-x-3 w-full md:w-auto justify-between">
+                    <span id="question-number-badge" class="bg-indigo-100 text-indigo-800 font-extrabold text-xs px-3 py-1 rounded-full">
+                        문제 1 / 25
+                    </span>
+                    <span id="question-type-badge" class="bg-slate-100 text-slate-600 font-semibold text-xs px-2.5 py-1 rounded-md">
+                        4지선다형
+                    </span>
+                </div>
+                <div class="w-full md:w-72 bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-slate-200 space-y-6">
+                <!-- Context / Textbook scenario banner if applicable -->
+                <div id="textbook-context" class="hidden bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl text-sm text-amber-900 space-y-1">
+                    <div class="font-bold flex items-center space-x-1 text-amber-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <span id="context-title">교과서 삽화 상황 참조</span>
+                    </div>
+                    <div id="context-body" class="text-xs md:text-sm text-amber-800/90 leading-relaxed"></div>
+                </div>
+
+                <!-- Question Text -->
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-900 leading-snug">
+                    질문 내용이 여기에 들어갑니다.
+                </h3>
+
+                <!-- Answer Container (Dynamic) -->
+                <div id="answers-container" class="space-y-3 pt-2">
+                    <!-- Dynamic choices inserted via JS -->
+                </div>
+
+                <!-- Explanation / Feedback Box (Hidden initially) -->
+                <div id="feedback-box" class="hidden p-4 rounded-xl border transition-all duration-300">
+                    <div id="feedback-title" class="font-bold text-sm md:text-base mb-1 flex items-center space-x-2"></div>
+                    <p id="feedback-text" class="text-xs md:text-sm text-slate-700 leading-relaxed"></p>
+                </div>
+
+                <!-- Footer Nav Buttons -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-sm transition disabled:opacity-40 disabled:cursor-not-allowed">
+                        이전 문제
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-sm transition shadow flex items-center space-x-1">
+                        <span id="btn-next-text">다음 문제</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT SCREEN -->
+        <div id="result-screen" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-xl border border-slate-200 text-center space-y-6">
+                <div id="score-badge" class="inline-block p-4 rounded-full mb-2">
+                    <!-- Icon updated via JS -->
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-900">학습 결과 보고서</h2>
+                <div class="text-5xl font-black tracking-tight text-indigo-600">
+                    <span id="final-score">0</span> <span class="text-2xl text-slate-400 font-normal">/ 100점</span>
+                </div>
+                <p id="score-comment" class="text-slate-600 font-medium text-sm md:text-base max-w-md mx-auto"></p>
+
+                <!-- Breakdown Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto pt-2 text-center">
+                    <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                        <span class="text-xs text-indigo-600 font-semibold block">총 문항</span>
+                        <span id="stat-total" class="text-xl font-bold text-indigo-900">25</span>
+                    </div>
+                    <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                        <span class="text-xs text-emerald-600 font-semibold block">정답</span>
+                        <span id="stat-correct" class="text-xl font-bold text-emerald-900">0</span>
+                    </div>
+                    <div class="bg-rose-50 p-3.5 rounded-xl border border-rose-100">
+                        <span class="text-xs text-rose-600 font-semibold block">오답</span>
+                        <span id="stat-incorrect" class="text-xl font-bold text-rose-900">0</span>
+                    </div>
+                    <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-100">
+                        <span class="text-xs text-amber-600 font-semibold block">정답률</span>
+                        <span id="stat-rate" class="text-xl font-bold text-amber-900">0%</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 pt-4">
+                    <button onclick="restartQuiz()" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition">
+                        처음부터 다시 풀기
+                    </button>
+                    <button onclick="toggleReviewList()" class="w-full sm:w-auto px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl border border-slate-300 transition">
+                        전체 오답 및 해설 보기
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review List -->
+            <div id="review-container" class="hidden bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-4">
+                <h3 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3 flex items-center justify-between">
+                    <span>전체 문항 풀이 해설</span>
+                    <span class="text-xs font-normal text-slate-500">25개 문항 복습</span>
+                </h3>
+                <div id="review-list" class="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                    <!-- Dynamic review items -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4">
+            중학교 1학년 사회 | 2. 생활 속의 다양한 법 (공법과 사법, 공적·사적 생활 관계)
+        </div>
+    </footer>
+
+    <script>
+        // Quiz Data - 25 questions based on textbook pages 208-209
+        const quizQuestions = [
+            // 4지선다형 (1 ~ 12)
+            {
+                id: 1,
+                type: 'choice4',
+                category: '공법과 사법',
+                question: '법을 규율 영역에 따라 구분할 때, 국가와 개인 간 또는 국가기관 상호 간의 공적인 관계를 다루는 법은?',
+                options: ['① 사법', '② 공법', '③ 사회법', '④ 관습법'],
+                answer: 1, // 0-indexed: 1 = ② 공법
+                explanation: '국가와 개인 간 또는 국가기관 상호 간의 공적인 관계를 다루는 법은 공법(公法)입니다.'
+            },
+            {
+                id: 2,
+                type: 'choice4',
+                category: '공법과 사법',
+                question: '다음 중 사법(私法)에 대한 설명으로 가장 적절한 것은?',
+                options: [
+                    '① 국민의 기본권과 국가기관의 구성을 규정한다.',
+                    '② 개인과 개인 간의 사적인 관계를 다룬다.',
+                    '③ 범죄의 종류와 처벌 기준을 다룬다.',
+                    '④ 국가가 개인 간의 관계에 개입하는 중간적 성격의 법이다.'
+                ],
+                answer: 1,
+                explanation: '사법(私法)은 개인과 개인 사이의 자율적인 재산 관계나 가족 관계 등 사적인 생활 관계를 다룹니다.'
+            },
+            {
+                id: 3,
+                type: 'choice4',
+                category: '공법 종류',
+                question: '다음 중 공법에 해당하는 법률끼리 바르게 짝지어진 것은?',
+                options: ['① 민법, 상법', '② 헌법, 형법', '③ 민법, 형법', '④ 헌법, 상법'],
+                answer: 1,
+                explanation: '공법의 대표적인 예로는 국가의 최고법인 헌법과 범죄 및 처벌을 다루는 형법이 있습니다. (민법과 상법은 사법)'
+            },
+            {
+                id: 4,
+                type: 'choice4',
+                category: '민법의 이해',
+                question: '다음 중 민법에서 주로 다루는 내용에 해당하지 않는 것은?',
+                options: ['① 혼인과 이혼', '② 출산과 입양', '③ 재산권과 계약', '④ 범죄의 종류와 형벌'],
+                answer: 3,
+                explanation: '범죄의 종류와 처벌(형벌)에 대한 기준을 다루는 법은 형법(공법)입니다.'
+            },
+            {
+                id: 5,
+                type: 'choice4',
+                category: '상법의 이해',
+                question: '다음 중 상법에 대한 설명으로 옳은 것은?',
+                options: [
+                    '① 한 나라의 최고법이다.',
+                    '② 범죄를 저지른 사람을 처벌하는 기준을 제시한다.',
+                    '③ 기업의 설립과 활동, 상거래 활동을 규율한다.',
+                    '④ 국민의 언론·출판·집회·결사의 자유를 보장한다.'
+                ],
+                answer: 2,
+                explanation: '상법은 기업의 설립과 활동 등 기업에 관한 사항과 상거래 활동을 규율하는 대표적인 사법입니다.'
+            },
+            {
+                id: 6,
+                type: 'choice4',
+                category: '헌법의 이해',
+                question: '헌법에 대한 설명으로 옳지 않은 것은?',
+                options: [
+                    '① 한 나라의 최고법이다.',
+                    '② 국민의 기본권을 규정하고 보장한다.',
+                    '③ 국가기관의 구성과 운영 원리를 담고 있다.',
+                    '④ 개인 간의 재산 거래, 부동산 거래 등의 관계를 다룬다.'
+                ],
+                answer: 3,
+                explanation: '개인 간의 부동산 매매나 임대차 계약 등 재산 관계를 규율하는 법은 민법(사법)입니다.'
+            },
+            {
+                id: 7,
+                type: 'choice4',
+                category: '사례 분석',
+                contextTitle: '교과서 209쪽 (가) 그림 상황',
+                contextBody: '학생들이 "정부는 기후위기 대응에 적극 앞장서라!" 피켓을 들고 시위하는 모습과 경찰관.',
+                question: '교과서 (가)의 상황(학생들의 기후위기 대응 촉구 평화 시위)에 대한 분석으로 옳은 것은?',
+                options: [
+                    '① 사적인 생활 관계에 해당한다.',
+                    '② 헌법 제21조(집회·결사의 자유)가 적용된다.',
+                    '③ 민법 제807조(혼인 적령)가 적용된다.',
+                    '④ 개인 간의 재산권 다툼을 해결하는 과정이다.'
+                ],
+                answer: 1,
+                explanation: '시민들이 집회를 열고 목소리를 내는 것은 헌법 제21조에 보장된 집회·결사의 자유 권리를 행사하는 공적인 생활 관계입니다.'
+            },
+            {
+                id: 8,
+                type: 'choice4',
+                category: '사례 분석',
+                contextTitle: '교과서 209쪽 (나) 그림 상황',
+                contextBody: '학생 둘이 벤치에 앉아 "나랑 결혼해 줄래?", "우리는 아직 16세인데 결혼할 수 있을까?"라고 대화하는 모습.',
+                question: '교과서 (나)의 상황에 대한 법적 분석으로 옳은 것은?',
+                options: [
+                    '① 공적인 생활 관계에 해당한다.',
+                    '② 형법 제329조가 적용되는 상황이다.',
+                    '③ 민법 제807조에 따라 18세가 된 사람은 혼인할 수 있다.',
+                    '④ 국가기관이 개인의 범죄 행위를 처벌하는 모습이다.'
+                ],
+                answer: 2,
+                explanation: '혼인은 개인과 개인의 사적인 관계이며, 민법 제807조(혼인 적령)에 의해 만 18세가 되어야 법적으로 혼인할 수 있습니다.'
+            },
+
+            {
+                id: 9,
+                type: 'choice4',
+                category: '사례 분석',
+                contextTitle: '교과서 209쪽 (다) 그림 상황',
+                contextBody: '경찰관이 학생에게 "타인의 물건을 훔쳤으니 체포하겠습니다."라고 말하는 모습.',
+                question: '교과서 (다)의 상황에 대한 설명으로 옳지 않은 것은?',
+                options: [
+                    '① 적용되는 법 조항은 형법 제329조(절도)이다.',
+                    '② 국가가 공권력을 행사하는 공적인 생활 관계이다.',
+                    '③ 공법의 적용을 받는 대표적인 사례이다.',
+                    '④ 개인과 개인 간의 자유로운 계약 관계에 속한다.'
+                ],
+                answer: 3,
+                explanation: '절도 행위를 체포하고 처벌하는 것은 사회 질서 유지를 위한 국가의 개입으로, 계약이 아닌 공적인 생활 관계(형법)에 해당합니다.'
+            },
+            {
+                id: 10,
+                type: 'choice4',
+                category: '사적인 생활 관계',
+                question: '다음 중 사적인 생활 관계에 해당하는 사례는?',
+                options: [
+                    '① 대통령 선거에 참여하여 투표권을 행사한다.',
+                    '② 중고 거래 앱에서 자전거를 사고판다.',
+                    '③ 세무서에 소득세를 신고하고 납부한다.',
+                    '④ 절도 행위를 한 범죄자를 경찰이 체포한다.'
+                ],
+                answer: 1,
+                explanation: '중고 거래 앱에서 물건을 매매하는 것은 개인 간의 사적인 재산 계약 관계(사법)에 해당합니다.'
+            },
+            {
+                id: 11,
+                type: 'choice4',
+                category: '공적인 생활 관계',
+                question: '다음 중 공적인 생활 관계에 해당하는 사례는?',
+                options: [
+                    '① 문구점에서 학용품을 구매한다.',
+                    '② 친구와 주말에 영화를 보기로 약속한다.',
+                    '③ 병역의 의무를 다하기 위해 입대 통지서를 받는다.',
+                    '④ 친척이 큰 돈을 빌려갔는데 이를 갚지 않아 손해가 크다.'
+                ],
+                answer: 2,
+                explanation: '병역 의무 이행 및 입대는 국가와 개인 간의 관계를 규율하는 공적인 생활 관계(공법)입니다.'
+            },
+            {
+                id: 12,
+                type: 'choice4',
+                category: '법의 종류',
+                question: '국가가 개인 간의 관계에 개입하는 중간적 성격을 가지는 법 영역은?',
+                options: ['① 공법', '② 사법', '③ 사회법', '④ 헌법'],
+                answer: 2,
+                explanation: '국가가 사적인 관계에 개입하여 사회적 약자를 보호하고 공공복리를 도모하는 중간적 성격의 법을 사회법이라 합니다.'
+            },
+
+            // 2지선다형 (13 ~ 16)
+            {
+                id: 13,
+                type: 'choice2',
+                category: '공법 vs 사법',
+                question: '시장에서 과일을 사고파는 거래 행위는 어느 법의 적용을 받는 생활 관계인가?',
+                options: ['공법', '사법'],
+                answer: 1, // 사법
+                explanation: '물건을 매매하는 것은 개인과 개인 사이의 사적인 재산 관계이므로 사법이 적용됩니다.'
+            },
+            {
+                id: 14,
+                type: 'choice2',
+                category: '공법 vs 사법',
+                question: '선거에 참여하여 국민의 대표를 선출하는 행위는 어느 법의 적용을 받는 생활 관계인가?',
+                options: ['공법', '사법'],
+                answer: 0, // 공법
+                explanation: '선거 및 투표 참여는 국가 구성원으로서 권리를 행사하는 공적인 생활 관계이므로 공법이 적용됩니다.'
+            },
+            {
+                id: 15,
+                type: 'choice2',
+                category: '법률 구별',
+                question: '범죄의 종류와 처벌의 기준을 규정하는 법은 무엇인가?',
+                options: ['헌법', '형법'],
+                answer: 1, // 형법
+                explanation: '범죄의 유형과 그에 따른 형벌의 종류 및 중량을 규정한 법은 형법입니다.'
+            },
+            {
+                id: 16,
+                type: 'choice2',
+                category: '법률 구별',
+                question: '혼인, 이혼, 출산, 입양 등의 가족 관계와 재산권을 다루는 법은 무엇인가?',
+                options: ['민법', '상법'],
+                answer: 0, // 민법
+                explanation: '개인의 가족 관계와 재산권, 계약 등을 규율하는 대표적인 법률은 민법입니다.'
+            },
+
+            // O/X형 (17 ~ 21)
+            {
+                id: 17,
+                type: 'ox',
+                category: '헌법 개념',
+                question: '헌법은 한 나라의 최고법으로, 국민의 기본권 보장과 국가기관의 구성 및 운영 원리를 담고 있다.',
+                options: ['O (맞음)', 'X (틀림)'],
+                answer: 0, // O
+                explanation: '올바른 설명입니다. 헌법은 한 나라의 최고법으로 기본권 보장과 국가기관의 원리를 담고 있습니다.'
+            },
+            {
+                id: 18,
+                type: 'ox',
+                category: '개념 구별',
+                question: '개인과 개인 간의 사적인 관계를 다루는 법을 공법이라고 한다.',
+                options: ['O (맞음)', 'X (틀림)'],
+                answer: 1, // X
+                explanation: '틀렸습니다. 개인과 개인 간의 사적인 관계를 다루는 법은 공법이 아니라 사법(私法)입니다.'
+            },
+            {
+                id: 19,
+                type: 'ox',
+                category: '민법 조항',
+                question: '민법 제807조에 따르면 만 16세가 된 사람은 독자적으로 혼인할 수 있다.',
+                options: ['O (맞음)', 'X (틀림)'],
+                answer: 1, // X
+                explanation: '틀렸습니다. 민법 제807조(혼인 적령) 규정에 따르면 만 18세가 된 사람이 혼인할 수 있습니다.'
+            },
+            {
+                id: 20,
+                type: 'ox',
+                category: '헌법 조항',
+                question: '언론·출판의 자유와 집회·결사의 자유를 보장하는 법 조항은 헌법에 나와 있다.',
+                options: ['O (맞음)', 'X (틀림)'],
+                answer: 0, // O
+                explanation: '올바른 설명입니다. 교과서에 명시된 헌법 제21조는 언론·출판의 자유와 집회·결사의 자유를 보장합니다.'
+            },
+            {
+                id: 21,
+                type: 'ox',
+                category: '공적/사적 구별',
+                question: '타인의 재물을 절취한 자를 경찰이 체포하고 처벌하는 것은 사적인 생활 관계에 해당한다.',
+                options: ['O (맞음)', 'X (틀림)'],
+                answer: 1, // X
+                explanation: '틀렸습니다. 절도범 체포 및 처벌은 사회 질서 유지를 위해 국가 공권력이 개입하는 공적인 생활 관계입니다.'
+            },
+
+            // 단답형 (22 ~ 25)
+            {
+                id: 22,
+                type: 'short',
+                category: '용어 쓰기',
+                question: '국가와 개인 간 또는 국가기관 상호 간의 공적인 관계를 다루는 법 영역의 명칭을 쓰시오.',
+                correctShortAnswers: ['공법'],
+                explanation: '국가와 개인 간, 국가기관 간의 공적인 관계를 다루는 법은 [공법]입니다.'
+            },
+            {
+                id: 23,
+                type: 'short',
+                category: '용어 쓰기',
+                question: '개인과 개인 간의 사적인 관계를 다루는 법 영역으로, 민법과 상법이 속하는 법 영역의 명칭을 쓰시오.',
+                correctShortAnswers: ['사법'],
+                explanation: '개인 간의 사적인 관계를 다루며 민법, 상법 등이 포함되는 법은 [사법]입니다.'
+            },
+            {
+                id: 24,
+                type: 'short',
+                category: '범죄 용어',
+                question: '형법 제329조에 명시되어 있으며, 타인의 재물을 절취한 자에게 적용되는 범죄 명칭을 쓰시오. (OO죄 또는 OO)',
+                correctShortAnswers: ['절도', '절도죄'],
+                explanation: '형법 제329조는 타인의 재물을 절취하는 [절도](절도죄)에 대해 처벌 규정을 두고 있습니다.'
+            },
+            {
+                id: 25,
+                type: 'short',
+                category: '초성 퀴즈',
+                question: '교과서 208쪽 상단 핵심용어 초성 "ㄱㅂ"과 "ㅅㅂ"의 명칭을 순서대로 쓰시오. (예: 민법, 형법)',
+                correctShortAnswers: ['공법, 사법', '공법 사법', '공법,사법'],
+                explanation: '교과서 208쪽 상단 핵심 용어 초성은 [공법, 사법]입니다.'
+            }
+        ];
+
+        // State variables
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+        let answeredState = new Array(quizQuestions.length).fill(false);
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            currentQuestionIndex = 0;
+            userAnswers.fill(null);
+            answeredState.fill(false);
+            renderQuestion();
+        }
+
+        function restartQuiz() {
+            document.getElementById('review-container').classList.add('hidden');
+            startQuiz();
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const q = quizQuestions[currentQuestionIndex];
+            const total = quizQuestions.length;
+
+            // Badges & Progress
+            document.getElementById('question-number-badge').innerText = `문제 ${currentQuestionIndex + 1} / ${total}`;
+            document.getElementById('question-type-badge').innerText = getTypeName(q.type);
+            document.getElementById('progress-bar').style.width = `${((currentQuestionIndex + 1) / total) * 100}%`;
+
+            // Textbook context banner
+            const contextElem = document.getElementById('textbook-context');
+            if (q.contextTitle && q.contextBody) {
+                document.getElementById('context-title').innerText = q.contextTitle;
+                document.getElementById('context-body').innerText = q.contextBody;
+                contextElem.classList.remove('hidden');
+            } else {
+                contextElem.classList.add('hidden');
+            }
+
+            // Question Text
+            document.getElementById('question-text').innerText = q.question;
+
+            // Answers Container
+            const container = document.getElementById('answers-container');
+            container.innerHTML = '';
+
+            const isAnswered = answeredState[currentQuestionIndex];
+
+            if (q.type === 'choice4' || q.type === 'choice2' || q.type === 'ox') {
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = `w-full text-left p-4 rounded-xl border-2 font-medium transition flex items-center justify-between text-sm md:text-base cursor-pointer `;
+                    
+                    if (isAnswered) {
+                        btn.disabled = true;
+                        if (idx === q.answer) {
+                            btn.className += 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold';
+                        } else if (userAnswers[currentQuestionIndex] === idx) {
+                            btn.className += 'bg-rose-50 border-rose-400 text-rose-900';
+                        } else {
+                            btn.className += 'bg-slate-50 border-slate-200 text-slate-400';
+                        }
+                    } else {
+                        btn.className += 'bg-white border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-slate-800';
+                        btn.onclick = () => selectOption(idx);
+                    }
+
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        ${isAnswered && idx === q.answer ? '<span class="text-emerald-600 font-extrabold text-lg">✓</span>' : ''}
+                        ${isAnswered && userAnswers[currentQuestionIndex] === idx && idx !== q.answer ? '<span class="text-rose-500 font-extrabold text-lg">✕</span>' : ''}
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'short') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = '정답을 입력하세요 (예: 공법)';
+                input.className = 'w-full p-3.5 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none text-slate-900 font-semibold';
+                if (isAnswered) {
+                    input.value = userAnswers[currentQuestionIndex] || '';
+                    input.disabled = true;
+                    if (checkShortAnswer(userAnswers[currentQuestionIndex], q.correctShortAnswers)) {
+                        input.className += ' bg-emerald-50 border-emerald-500 text-emerald-900';
+                    } else {
+                        input.className += ' bg-rose-50 border-rose-400 text-rose-900';
+                    }
+                }
+
+                const submitBtn = document.createElement('button');
+                submitBtn.className = 'w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow disabled:opacity-50';
+                submitBtn.innerText = isAnswered ? '제출 완료' : '정답 제출하기';
+                submitBtn.disabled = isAnswered;
+                submitBtn.onclick = () => {
+                    const val = input.value.trim();
+                    if (!val) return;
+                    selectShortAnswer(val);
+                };
+
+                wrapper.appendChild(input);
+                wrapper.appendChild(submitBtn);
+                container.appendChild(wrapper);
+            }
+
+            // Feedback box
+            const feedbackBox = document.getElementById('feedback-box');
+            if (isAnswered) {
+                feedbackBox.classList.remove('hidden');
+                const isCorrect = isUserCorrect(currentQuestionIndex);
+                if (isCorrect) {
+                    feedbackBox.className = 'p-4 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900';
+                    document.getElementById('feedback-title').innerHTML = '<span class="text-emerald-600 font-extrabold text-lg">✓ 정답입니다!</span>';
+                } else {
+                    feedbackBox.className = 'p-4 rounded-xl border bg-rose-50 border-rose-200 text-rose-900';
+                    let correctDisplay = '';
+                    if (q.type === 'short') {
+                        correctDisplay = q.correctShortAnswers[0];
+                    } else {
+                        correctDisplay = q.options[q.answer];
+                    }
+                    document.getElementById('feedback-title').innerHTML = `<span class="text-rose-600 font-extrabold text-lg">✕ 오답입니다</span> <span class="text-xs font-normal text-slate-600 ml-2">(정답: ${correctDisplay})</span>`;
+                }
+                document.getElementById('feedback-text').innerText = q.explanation;
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+
+            // Prev / Next button state
+            document.getElementById('btn-prev').disabled = (currentQuestionIndex === 0);
+            
+            const btnNextText = document.getElementById('btn-next-text');
+            if (currentQuestionIndex === total - 1) {
+                btnNextText.innerText = '결과 확인하기';
+            } else {
+                btnNextText.innerText = '다음 문제';
+            }
+        }
+
+        // Helper type label
+        function getTypeName(type) {
+            switch(type) {
+                case 'choice4': return '4지선다형';
+                case 'choice2': return '2지선다형';
+                case 'ox': return 'O/X 판단형';
+                case 'short': return '단답형';
+                default: return '객관식';
+            }
+        }
+
+        // Selection Handlers
+        function selectOption(idx) {
+            userAnswers[currentQuestionIndex] = idx;
+            answeredState[currentQuestionIndex] = true;
+            renderQuestion();
+        }
+
+        function selectShortAnswer(val) {
+            userAnswers[currentQuestionIndex] = val;
+            answeredState[currentQuestionIndex] = true;
+            renderQuestion();
+        }
+
+        function checkShortAnswer(userVal, allowedList) {
+            if (!userVal) return false;
+            const normalized = userVal.replace(/\s+/g, '').toLowerCase();
+            return allowedList.some(ans => ans.replace(/\s+/g, '').toLowerCase() === normalized);
+        }
+
+        function isUserCorrect(idx) {
+            const q = quizQuestions[idx];
+            const userAns = userAnswers[idx];
+            if (userAns === null || userAns === undefined) return false;
+
+            if (q.type === 'short') {
+                return checkShortAnswer(userAns, q.correctShortAnswers);
+            } else {
+                return userAns === q.answer;
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show Results Screen
+        function showResults() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            let correctCount = 0;
+            quizQuestions.forEach((q, idx) => {
+                if (isUserCorrect(idx)) correctCount++;
+            });
+
+            const total = quizQuestions.length;
+            const score = Math.round((correctCount / total) * 100);
+
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('stat-total').innerText = total;
+            document.getElementById('stat-correct').innerText = correctCount;
+            document.getElementById('stat-incorrect').innerText = total - correctCount;
+            document.getElementById('stat-rate').innerText = `${score}%`;
+
+            const badgeElem = document.getElementById('score-badge');
+            const commentElem = document.getElementById('score-comment');
+
+            if (score >= 90) {
+                badgeElem.className = 'inline-block p-4 rounded-full bg-emerald-100 text-emerald-600 mb-2';
+                badgeElem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>`;
+                commentElem.innerText = '완벽합니다! 공법과 사법, 공적·사적 생활 관계의 개념을 완벽하게 이해하고 있네요!';
+            } else if (score >= 70) {
+                badgeElem.className = 'inline-block p-4 rounded-full bg-indigo-100 text-indigo-600 mb-2';
+                badgeElem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" /></svg>`;
+                commentElem.innerText = '우수한 성적입니다! 헷갈린 문항의 해설을 다시 읽어보면 백점을 받을 수 있습니다.';
+            } else {
+                badgeElem.className = 'inline-block p-4 rounded-full bg-amber-100 text-amber-600 mb-2';
+                badgeElem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>`;
+                commentElem.innerText = '복습이 조금 더 필요하네요. 아래 오답 노트 버튼을 눌러 개념을 확인해 보세요!';
+            }
+
+            renderReviewList();
+        }
+
+        // Render Review List
+        function renderReviewList() {
+            const listElem = document.getElementById('review-list');
+            listElem.innerHTML = '';
+
+            quizQuestions.forEach((q, idx) => {
+                const correct = isUserCorrect(idx);
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border ${correct ? 'bg-slate-50 border-slate-200' : 'bg-rose-50/60 border-rose-200'} space-y-2`;
+
+                let correctText = '';
+                if (q.type === 'short') {
+                    correctText = q.correctShortAnswers.join(' 또는 ');
+                } else {
+                    correctText = q.options[q.answer];
+                }
+
+                let userText = '';
+                if (userAnswers[idx] === null || userAnswers[idx] === undefined) {
+                    userText = '(미입력)';
+                } else if (q.type === 'short') {
+                    userText = userAnswers[idx];
+                } else {
+                    userText = q.options[userAnswers[idx]];
+                }
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-start gap-2">
+                        <div class="font-bold text-slate-900 text-sm md:text-base">
+                            <span class="text-indigo-600">Q${idx + 1}.</span> ${q.question}
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold whitespace-nowrap ${correct ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${correct ? '정답' : '오답'}
+                        </span>
+                    </div>
+                    <div class="text-xs md:text-sm space-y-1 pt-1">
+                        <div class="text-slate-600">내 제출 답안: <strong class="${correct ? 'text-emerald-700' : 'text-rose-600'}">${userText}</strong></div>
+                        ${!correct ? `<div class="text-slate-700">바른 정답: <strong class="text-emerald-700">${correctText}</strong></div>` : ''}
+                        <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-slate-600 text-xs mt-2 leading-relaxed">
+                            💡 <strong>해설:</strong> ${q.explanation}
+                        </div>
+                    </div>
+                `;
+                listElem.appendChild(item);
+            });
+        }
+
+        function toggleReviewList() {
+            const container = document.getElementById('review-container');
+            container.classList.toggle('hidden');
+            if (!container.classList.contains('hidden')) {
+                container.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
